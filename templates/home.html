@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+<style>
+
+</style>
+{% block style %}
+    a{
+        text-decoration: none;
+    }
+{% endblock %}
+{% block content %}
+<div class="author" style="font-size: 18px;margin-top:5px">
+    <form action="/author" method="post">
+        Author Search:<input type="text" name="email" required>
+        <input type="submit" value="submit">
+        (Find by Email)
+    </form>
+    <form action="/search">
+        Content Search:<input type="text" name="content">
+        <input type="submit" value="submit">
+        (Use Highlight_part, Title, Abstract to find articles; Use Content,Email to find comments)
+    </form>
+</div>
+<div class="all-subjects">
+        {% for subject in subjects %}
+            <h2><a href="/subject/{{ subject.id }}">{{ subject.title.title() }}</a></h2>
+            <p>Description:{{ subject.description }}</p>
+        {% endfor %}
+ </div>
+{% endblock %}
